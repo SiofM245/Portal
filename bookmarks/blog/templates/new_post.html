@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+
+{% block title %}
+	Add New Post
+{% endblock%}
+
+{% block content %}
+	<div class="new_post">
+		<form method="POST" enctype="multipart/form-data">
+			{% csrf_token%}
+			<p>
+				<label for="id_title">Tytuł:</label>
+				<input type="text" name="title" maxlength="255" required id="id_title">
+			</p>
+			<p><input type="hidden" name="author" value="{{request.user.id}}"></p>
+			<p><label for="id_photo">Photo:</label> <input type="file" name="photo" accept="image/*" id="id_photo"></p>
+<p><label for="id_body">Wpis:</label> <textarea name="body" cols="40" rows="10" required id="id_body">
+</textarea></p>
+			<div><button>Zapisz</button></div>
+
+		</form>
+		
+	</div>
+
+{% endblock %}

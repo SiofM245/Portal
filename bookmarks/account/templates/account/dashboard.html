@@ -6,13 +6,11 @@
   <h1>Pulpit</h1>
   <p>Witaj na pulpicie. Możesz <a href="{% url "edit" %}">edytować swój  profil</a> lub <a href="{% url "password_change" %}">zmienić swoje hasło</a>.</p>
 
-  {% with total_images_created=request.user.images_created.count %}
-    <p>Witaj na pulpicie. Oznaczyłeś {{ total_images_created }} obraz{{ total_images_created|pluralize }}.</p>
-  {% endwith %}
+  
 
 
   <p>Możesz także <a href="{% url "edit" %}">edytować swój profil</a> lub <a href="{% url "password_change" %}">zmienić hasło</a>.<p>
-
+<p>Wpisy <a href="../">Zobacz</a> lub <a href="../post/new/">Dodaj wpis</a>.<p>
   <h2>Co się dzieje</h2>
   <div id="action-list">
     {% for action in actions %}

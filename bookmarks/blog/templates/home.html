@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% if request.user.is_authenticated %}
+<h2 class="post_title"><a href="./post/new/">Dodaj nowy</a>
+{% for post in posts %}
+		<div class="post_entry">
+			<h2 class="post_title">
+				{% if post.author|stringformat:"s" == request.user.username %}
+				<a href="{% url 'post-detail' post.pk %}">{{post.title}}</a><br>
+				    {% else %}
+				{{post.title}}
+				{% endif %}
+				 {% if post.photo %}
+    				<img src="{{ post.photo.url }}"  height="200" alt="obrazek"/>
+    			 {% endif %}
+			</h2>
+			<p class="post_content">{{post.body}}<br>
+			<b><span style="color: blue;">Napisał: {{post.author}}</span> <b>
+			</p>
+
+		</div>
+	{%endfor%}
+
+    {% else %}
+      <a href="{% url "login" %}"><img src="{% static "img/login.png" %}" width="150" height="150 "></img></a>
+	  <a href="{% url "register" %}"><img style="margin-bottom:35px; margin-left:200px;" src="{% static "img/register.png" %}" width="160" height="80"></img></a>
+
+    {% endif %}
+
+
+{% endblock %}

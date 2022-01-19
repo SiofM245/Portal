@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	{{post.title}}
+{% endblock%}
+
+{%block content %}
+	
+	<div class="post_details">
+		<div class="post_info">
+			<h1>{{post.title}}</h1>
+
+			<div class="post_detail_meta">
+				 {% if post.photo %}
+    				<img class="image-detail"  src="{{ post.photo.url }}"   alt="obrazek"/>
+    {% endif %}
+
+			<p>Author: {{post.author}} | <a href="{% url 'post-edit' post.pk %}"> Edytuj Post </a> | <a href="{% url 'post-delete' post.pk%}"> Usuń post</a></p>
+
+		</div>
+		</div>
+		
+		<p class="post_detail_content">
+			{{post.body}}
+
+		</p>
+<br><a href="/">Wstecz</a>
+	</div>
+
+{% endblock%}
